@@ -81,20 +81,22 @@
             </div>
           </div>
 
+          <div id='post-content'></div>
+
           <div class="cards">
             <div class="row">
               <% @users.order(:person_name).each do |user| %>
-                  <div class="col-4">
-                    <%= link_to user do %>
-                      <div class="card">
-                        <%= image_tag(user.avatar, class: "user-icon square") %>
-                        <p class="text name"><%= user.person_name %></p>
-                        <p class="text address"><%= user.street %></p>
-                        <p class="text cep"><%= user.city %></p>
-                        <p class="text cep"><%= user.state.name %> - CEP: <%= user.postal_code %></p>
-                      </div>
-                    <% end %>
-                  </div>
+                <div class="col-4">
+                  <%= link_to user, remote: true do %>
+                    <div class="card">
+                      <%= image_tag(user.avatar, class: "user-icon square") %>
+                      <p class="text name"><%= user.person_name %></p>
+                      <p class="text address"><%= user.street %></p>
+                      <p class="text cep"><%= user.city %></p>
+                      <p class="text cep"><%= user.state.name %> - CEP: <%= user.postal_code %></p>
+                    </div>
+                  <% end %>
+                </div>
               <% end %>
             </div>
           </div>
@@ -167,7 +169,7 @@
         <td><%= user.state %></td>
         <td><%= user.postal_code %></td>
         <td><%= user.person_image %></td>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Show', user%></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
