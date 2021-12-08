@@ -1,0 +1,21 @@
+.show{
+  background-color: #FFFFFF;
+}
+
+.show .path .text{
+  font-size: 12px;
+  padding-top: 1.5rem;
+}
+
+.show .list .text{
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.show .list{
+  padding-left: 0px;
+}
+
+.show .path{
+  padding-left: 8px;
+}

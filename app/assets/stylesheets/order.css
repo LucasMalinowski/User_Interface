@@ -1,0 +1,11 @@
+.order{
+  border: solid;
+  border-color: #E5E5E5;
+  border-width: 1px;
+  border-radius: 3px;
+  padding: 20px 0 0 10px;
+}
+
+.order .text{
+  font-size: 14px;
+}

@@ -1,0 +1,8 @@
+.pagination{
+  margin-top: 2.5em;
+  align-items: center;
+}
+
+.pagination .pagination-icon{
+  width: 12%;
+}

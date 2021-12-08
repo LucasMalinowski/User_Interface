@@ -1,0 +1,28 @@
+.footer{
+  background-color: #385E7D;
+  padding-top: 2em;
+}
+
+.img-footer{
+  width: 20%;
+}
+
+.footer .text{
+  color: #FFFFFF;
+}
+
+.footer .text-name{
+  margin: 0.6em 0 2em 0;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.footer .social-text{
+  font-size: 18px;
+  margin: 0 0 1.5em 0;
+}
+
+.footer .social-icons{
+  width: 4%;
+  margin: 0 0.5em 4em 0.5em;
+}

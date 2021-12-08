@@ -1,0 +1,44 @@
+.cards{
+  margin-top: 24px;
+  text-decoration: none;
+
+}
+
+.cards .card{
+  align-items: center;
+  border: solid;
+  border-color: #E5E5E5;
+  border-width: 1px;
+  border-radius: 3px;
+  padding: 2.5em 0 3em 0;
+  margin-bottom: 24px;
+}
+
+.card .square{
+  width: 100px;
+  height: 100px;
+}
+.card .user-icon{
+  /* width: 50%; */
+  margin-bottom: 2em;
+  border-radius: 100%;
+}
+
+.card .name{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card .address{
+  font-size: 18px;
+}
+
+.card .cep{
+  font-size: 14px;
+  margin: 0;
+}
+
+.card:hover{
+  border-color: #00AEEF;
+  color: black;
+}

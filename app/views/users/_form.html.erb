@@ -1,0 +1,69 @@
+<div class="header">
+    <div class="container">
+      <div class="row">
+          <div class="col-2 header-item logo">
+            <%= image_tag("logo-alfacon.png") %>
+          </div>
+          <div class="col-1 header-item">
+          </div>
+          <div class="col-5 header-item">
+            <input type="text" class="input" placeholder="Buscar aqui">
+          </div>
+          <div class="col-2 header-item">
+            <button class="button"></button>
+          </div>
+          <div class="col-2 header-item">
+            <button class="button"></button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+<%= form_for(user, local: true, html: { multipart: true })  do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  +
+  <div class="field col-2">
+    <%= form.label :person_name %>
+    <%= form.text_field :person_name, class: "input" %>
+  </div>
+
+  <div class="field col-2">
+    <%= form.label :street %>
+    <%= form.text_field :street %>
+  </div>
+
+  <div class="field col-2">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field col-2">
+    <%= form.label :state %>
+    <%= form.select :state_id, @states.collect {|state| [state.name, state.id]} %>
+  </div>
+
+  <div class="field col-2">
+    <%= form.label :postal_code %>
+    <%= form.number_field :postal_code %>
+  </div>
+
+  <div class="field col-2">
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar, accept: 'image/png,image/jpeg' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

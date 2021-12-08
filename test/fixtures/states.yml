@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: states
+#
+#  id         :bigint           not null, primary key
+#  initial    :string
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  initial: MyString
+
+two:
+  name: MyString
+  initial: MyString

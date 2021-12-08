@@ -1,0 +1,22 @@
+.filter{
+  height: 45%;
+  border: solid;
+  border-color: #E5E5E5;
+  border-radius: 0.3em;
+  border-width: 1px;
+  padding: 20px 10px 10px 20px;
+}
+
+.filter .text{
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+ .filter .states{
+  margin-bottom: 10px;
+}
+
+input[type="checkbox"]{
+
+}
