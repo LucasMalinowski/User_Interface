@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_011002) do
+ActiveRecord::Schema.define(version: 2021_12_14_135918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,14 +45,16 @@ ActiveRecord::Schema.define(version: 2021_12_08_011002) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "person_name"
-    t.string "street"
-    t.string "city"
-    t.integer "postal_code"
+    t.string "person_name", null: false
+    t.string "street", null: false
+    t.string "city", null: false
+    t.integer "postal_code", null: false
     t.string "person_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "state_id"
+    t.bigint "state_id", null: false
+    t.datetime "born_date", null: false
+    t.string "email", null: false
     t.index ["state_id"], name: "index_users_on_state_id"
   end
 

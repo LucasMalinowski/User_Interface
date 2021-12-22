@@ -1,5 +1,4 @@
 .filter{
-  height: 45%;
   border: solid;
   border-color: #E5E5E5;
   border-radius: 0.3em;
@@ -15,8 +14,4 @@
 
  .filter .states{
   margin-bottom: 10px;
-}
-
-input[type="checkbox"]{
-
 }

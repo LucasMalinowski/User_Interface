@@ -1,0 +1,17 @@
+<div class="cards">
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-4">
+        <%= link_to user, remote: true do %>
+          <div class="card">
+            <%= user.avatar.attached? ? image_tag(user.avatar, class: "user-icon square") : image_tag("person-icon.png", class: "user-icon square") %>
+            <p class="text name"><%= user.person_name %></p>
+            <p class="text address"><%= user.street %></p>
+            <p class="text cep"><%= user.city %></p>
+            <p class="text cep"><%= user.state.name %> - CEP: <%= user.postal_code %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,24 +1,3 @@
-<div class="header">
-    <div class="container">
-      <div class="row">
-          <div class="col-2 header-item logo">
-            <%= image_tag("logo-alfacon.png") %>
-          </div>
-          <div class="col-1 header-item">
-          </div>
-          <div class="col-5 header-item">
-            <input type="text" class="input" placeholder="Buscar aqui">
-          </div>
-          <div class="col-2 header-item">
-            <button class="button"></button>
-          </div>
-          <div class="col-2 header-item">
-            <button class="button"></button>
-          </div>
-      </div>
-    </div>
-  </div>
-
 
 <%= form_for(user, local: true, html: { multipart: true })  do |form| %>
   <% if user.errors.any? %>
@@ -32,39 +11,127 @@
       </ul>
     </div>
   <% end %>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col">
+        <div class="general-info">
+          <h6>Informações Gerais:</h6>
+          <div class="field">
+            <%= form.label :person_name %><br>
+            <%= form.text_field :person_name, class: "input" %>
+          </div>
+          <div>
+            <%= form.label :email %><br>
+            <%= form.email_field :email%>
+          </div>
+          <div>
+            <%= form.label :born_date %><br>
+            <%= form.date_field(:born_date) %>
+          </div>
+          <div class="field">
+            <%= form.label :avatar %><br>
+            <%= form.file_field :avatar, accept: 'image/png,image/jpeg' %>
+          </div>
+        </div>
+      </div >
 
-  <div class="field col-2">
-    <%= form.label :person_name %>
-    <%= form.text_field :person_name, class: "input" %>
+      <div class="col">
+        <div class="addres-info">
+          <h6>Endereço:</h6>
+          <div class="field">
+            <%= form.label :postal_code %><br>
+            <%= form.number_field :postal_code, id: "cep" %>
+          </div>
+          <div class="field">
+            <%= form.label :street %><br>
+            <%= form.text_field :street, id: "rua" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :city %><br>
+            <%= form.text_field :city, id: "cidade" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :state %><br>
+            <%= form.select :state_uf, @states.collect {|state| [state.name, state.initial]} %>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+
   </div>
-
-  <div class="field col-2">
-    <%= form.label :street %>
-    <%= form.text_field :street %>
-  </div>
-
-  <div class="field col-2">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div class="field col-2">
-    <%= form.label :state %>
-    <%= form.select :state_id, @states.collect {|state| [state.name, state.id]} %>
-  </div>
-
-  <div class="field col-2">
-    <%= form.label :postal_code %>
-    <%= form.number_field :postal_code %>
-  </div>
-
-  <div class="field col-2">
-    <%= form.label :avatar %>
-    <%= form.file_field :avatar, accept: 'image/png,image/jpeg' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
+</div>
 <% end %>
+
+
+<script>
+  $(function() {
+    $(document).on('blur', '#cep', function() {
+      valor = this.value
+        // alert(valor);
+      var cep = valor.replace(/\D/g, '');
+
+      if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+        //Valida o formato do CEP.
+        if(validacep.test(cep)) {
+
+          //Preenche os campos com "..." enquanto consulta webservice.
+          document.getElementById('rua').value="...";
+          document.getElementById('cidade').value="...";
+
+          //Cria um elemento javascript.
+          var script = document.createElement('script');
+
+          //Sincroniza com o callback.
+          script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+          //Insere script no documento e carrega o conteúdo.
+          document.body.appendChild(script);
+
+        } //end if.
+        else {
+          //cep é inválido.
+          limpa_formulário_cep();
+          alert("Formato de CEP inválido.");
+        }
+      } //end if.
+      else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+      }
+
+      function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('user_street').value=("");
+            document.getElementById('user_city').value=("");
+      }
+
+
+    });
+  });
+
+  
+  function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('user_state_uf').value=(conteudo.uf);
+
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+
+</script>

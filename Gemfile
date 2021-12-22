@@ -27,6 +27,9 @@ gem 'bootstrap'
 gem 'popper_js', '~> 1.9', '>= 1.9.9'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
+
+gem 'correios-cep'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -43,6 +46,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'xray-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 

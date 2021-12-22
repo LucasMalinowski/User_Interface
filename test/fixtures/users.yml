@@ -3,14 +3,16 @@
 # Table name: users
 #
 #  id           :bigint           not null, primary key
-#  city         :string
+#  born_date    :datetime         not null
+#  city         :string           not null
+#  email        :string           not null
 #  person_image :string
-#  person_name  :string
-#  postal_code  :integer
-#  street       :string
+#  person_name  :string           not null
+#  postal_code  :integer          not null
+#  street       :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  state_id     :bigint
+#  state_id     :bigint           not null
 #
 # Indexes
 #

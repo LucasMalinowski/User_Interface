@@ -1,0 +1,32 @@
+ <div class="col-3">
+  <div class="filter">
+    <p class="text">Filtrar por Estado:</p>
+    <div>
+      <%= form_tag(users_path, method: :get , id: "search-form", remote: true) do %>
+        <ul class="list-unstyled">
+          <% @states.each do |state| %>
+            <li>
+              <%= check_box_tag "state_ids[]", state.id, @state_ids.include?(state.id.to_s), id: "state_ids_#{state.id}" %>
+              <%= label_tag "state_ids[#{state.id}]", state.name %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  search_form = document.getElementById("search-form")
+
+  var form_search = new FormData(search_form)
+
+  search_form.addEventListener("change",function(){
+    Rails.fire(search_form, 'submit');
+    console.log(form_search.getAll("state_ids[]"))
+  });
+
+  // $('#search-form').submit(function() {
+  //   $(this).append(`<input type="hidden" name="order" value="${a.value}" /> `);
+  // });
+</script>

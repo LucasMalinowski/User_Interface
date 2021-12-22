@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-12">
+    <div class="order">
+      <div class="row">
+        <div class="col-3">
+          <p class="text">Exibindo <%= @users.all.count %> de <%= @users.all.count %> itens</p>
+        </div>
+        <div class="col-6">
+          <p><%= link_to 'New User', new_user_path %></p>
+        </div>
+        <div class="col-3">
+          <%= form_tag(users_path, method: :get, id: "order-form", remote: true, onload: "startOrder()") do %>
+            <%= select_tag "order",  raw("<option value='person_name', selected='selected'>Nome</option><option value='born_date'>Idade</option><option value='city'>Cidade</option>") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  order_form = document.getElementById("order-form");
+
+  var form_order = new FormData(order_form);
+
+  order_form.addEventListener("change",function(){
+    Rails.fire(order_form, 'submit');
+    console.log(form_order.getAll("order"));
+  });
+
+  // $('#order-form').submit(function() {
+  //   $(this).append(`<input type="hidden" name="state_ids[]" value="${}" /> `);
+  // });
+
+
+</script>

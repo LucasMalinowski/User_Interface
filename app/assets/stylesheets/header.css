@@ -48,3 +48,7 @@
 .header .logo{
   padding-top: 1.2rem;
 }
+
+.header a:hover{
+  background-color: #385E7D;
+}
